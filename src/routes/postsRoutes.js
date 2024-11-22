@@ -1,5 +1,11 @@
 import express from "express"; // Importa o framework Express para criar o servidor
 import multer from "multer"; // Importa o multer para lidar com upload de arquivos
+import cors from "cors";
+
+const corsOptions = {
+    origin: "http://localhost:8000",
+    optionsSuccessStatus: 200
+}
 
 // Importa funções do controlador que lida com posts
 import { listarPosts, criarNovoPost, uploadImagem, atualizarNovoPost } from "../controllers/postsController.js";
@@ -25,6 +31,7 @@ const upload = multer({ dest: "./uploads", storage });
 const routes = (app) => {
     // Middleware para converter estruturas de dados recebidas para JSON
     app.use(express.json());
+    app.use(cors(corsOptions));
 
     // Rota GET para buscar todos os posts no banco de dados
     app.get("/posts", listarPosts);

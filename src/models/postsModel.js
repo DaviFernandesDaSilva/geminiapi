@@ -1,3 +1,4 @@
+import 'dotenv/config'; // Garantir o uso do .env via cloud
 import { ObjectId } from "mongodb";
 import conectarAoBanco from "../config/dbConfig.js"; // Importa a função para conectar ao banco de dados a partir do arquivo de configuração
 
