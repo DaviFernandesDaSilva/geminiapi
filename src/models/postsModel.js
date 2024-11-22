@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import conectarAoBanco from "../config/dbConfig.js"; // Importa a função para conectar ao banco de dados a partir do arquivo de configuração
 
 // Estabelece a conexão com o banco de dados usando a string de conexão armazenada na variável de ambiente MONGO_CONEXAO
@@ -24,3 +25,14 @@ export async function insertPost(novoPost){
     // Insere o novo post na coleção "posts" e retorna o resultado da operação
     return colecao.insertOne(novoPost);
 }
+
+// Função para atualizar um post
+export async function atualizarPost(id, postAtualizado){
+    const db = conexao.db("gemini");
+    const colecao = db.collection("posts");
+    
+    const objID = ObjectId.createFromHexString(id)
+
+    return colecao.updateOne({_id: new ObjectId(objID)}, {$set:postAtualizado});
+}
+

@@ -1,6 +1,7 @@
 # api keys
 .env
 server2.js
+padraoMongo.txt
 
 a.out
 # dependencies
